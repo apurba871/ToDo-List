@@ -29,4 +29,11 @@
 
 $("li").click(function() {
 	$(this).toggleClass("completed");
+});
+
+//Click on X to delete todo
+
+$("span").click(function(event) {
+	$(this).parent().remove(); //removing the li when the span is clicked
+	event.stopPropagation(); //stops event bubbling
 })
