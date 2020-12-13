@@ -27,13 +27,26 @@
 // 	}
 // })
 
-$("li").click(function() {
+$("ul").on("click", "li", function() {
+//$("li").click(function() {
 	$(this).toggleClass("completed");
 });
 
 //Click on X to delete todo
 
-$("span").click(function(event) {
+$("ul").on("click", "span", function() {
+//$("span").click(function(event) {
 	$(this).parent().remove(); //removing the li when the span is clicked
 	event.stopPropagation(); //stops event bubbling
-})
+});
+
+$("input[type='text']").keypress(function(event) {
+	//console.log('You pressed a key');
+	if (event.which === 13) {//enter key
+		//grabbing new todo text from input
+		var todoText = $(this).val();
+		$(this).val(""); //clear input
+		//create a new li and add to ul
+		$("ul").append("<li><span>X</span> " + todoText + "</li>");
+	}
+});
